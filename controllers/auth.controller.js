@@ -1,7 +1,5 @@
 const {User} = require("../models");
-
 const { generateAccessToken, generateRefreshToken, comparePassword } = require("../services/auth.service");
-const asyncHandler = require("express-async-handler");
 
 exports.login = async (req, res, next) => {
     const { email, password } = req.body

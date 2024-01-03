@@ -1,33 +1,34 @@
-const {User} = require("../models");
+const { User } = require("../models");
 const { generateAccessToken, generateRefreshToken, comparePassword } = require("../services/auth.service");
 
 exports.login = async (req, res, next) => {
-    const { email, password } = req.body
-    try {
-        const user = await User.findOne({where :  email });
-      
-        if (!user || !comparePassword(password, user.password)) {
-          res.status(401).json({
-            message: "Login not successful",
-            error: "User not found",
-          })
-        } else {
-          accessToken = await generateAccessToken(user)
-          refreshToken = await generateRefreshToken(user)
-          res.status(200).json({
-            message: "Login successful",
-            accessToken
-          })
-        }
-      } catch (error) {
-        res.status(400).json({
-          message: "An error occurred",
-          error: error.message,
-        })
-      }  
+  const { email, password } = req.body
+  try {
+    const user = await User.findOne({ where: email });
+
+    if (!user || !comparePassword(password, user.password)) {
+      res.status(401).json({
+        message: "Login not successful",
+        error: "User not found",
+      })
+    } else {
+      accessToken = await generateAccessToken(user)
+      refreshToken = await generateRefreshToken(user)
+      res.status(200).json({
+        message: "Login successful",
+        accessToken,
+        refreshToken
+      })
+    }
+  } catch (error) {
+    res.status(400).json({
+      message: "An error occurred",
+      error: error.message,
+    })
+  }
 };
 
-exports.refreshToken = asyncHandler(async (req, res, next) => {
+exports.refreshToken = async (req, res, next) => {
   const authHeader = req.headers['authorization']
   const token = authHeader && authHeader.split(' ')[1]
 
@@ -44,4 +45,4 @@ exports.refreshToken = asyncHandler(async (req, res, next) => {
     });
   });
 
-});
+};

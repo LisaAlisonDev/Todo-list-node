@@ -10,6 +10,9 @@ exports.generateRefreshToken = async (user) => {
 }
 
 exports.comparePassword = async (plaintextPassword, hash) => {
-    const result = await bcrypt.compare(plaintextPassword, hash);
-    return result;
+    if (plaintextPassword != null && hash != null) {
+        const result = await bcrypt.compare(plaintextPassword, hash);
+        return result;
+    }
+    return false;
 }

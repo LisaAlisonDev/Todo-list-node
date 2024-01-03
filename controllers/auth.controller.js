@@ -3,12 +3,9 @@ const {User} = require("../models");
 const { generateAccessToken, generateRefreshToken, comparePassword } = require("../services/auth.service");
 const asyncHandler = require("express-async-handler");
 
-
 exports.login = async (req, res, next) => {
-  console.log(req.body)
     const { email, password } = req.body
     try {
-        
         const user = await User.findOne({where :  email });
       
         if (!user || !comparePassword(password, user.password)) {

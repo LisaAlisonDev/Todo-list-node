@@ -19,7 +19,8 @@ module.exports = (sequelize, DataTypes) => {
     description: DataTypes.TEXT,
     dueDate: DataTypes.DATE,
     priority: DataTypes.ENUM('High','Medium','Low'),
-    status: DataTypes.ENUM('Pending','In Progress', 'Closed')
+    status: DataTypes.ENUM('Pending','In Progress', 'Closed'),
+    userId: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'Task',

@@ -14,14 +14,14 @@ app.set('view engine', 'ejs')
 app.use(bodyparser.json());
 app.use(bodyparser.urlencoded({extended: true}));
 app.use(express.static(path.join(__dirname, '/public')))
-app.use("/", routes);
+app.use("/api", routes);
 
 
 db.sequelize.authenticate().then(() => {
-    console.log("Synced db.");
+    console.log("Connected to db.");
   })
   .catch((err) => {
-    console.log("Failed to sync db: " + err.message);
+    console.log("Failed to connect to db: " + err.message);
   });
 
 

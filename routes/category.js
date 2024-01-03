@@ -1,14 +1,19 @@
 // wiki.js - Wiki route module.
 
 const express = require("express");
-const { login, refreshToken } = require("../controllers/auth.controller");
 const {create, getAll, getById, setById, remove } = require("../controllers/category.controller");
 const { authenticateToken } = require("../middlewares/auth.middleware");
 const router = express.Router();
 
 
-router.post('/login', login)
+router.get('/category', authenticateToken, getAll)
 
-router.get('/refresh-token', refreshToken)
+router.post('/category', authenticateToken, create)
+
+router.delete('/category/:id', authenticateToken, remove)
+
+router.get('/category/:id', authenticateToken, getById)
+
+router.put('/category/:id', authenticateToken, setById)
 
 module.exports = router;

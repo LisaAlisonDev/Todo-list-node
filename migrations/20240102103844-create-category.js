@@ -9,13 +9,13 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      CategoryID: {
+      categoryId: {
         type: Sequelize.INTEGER
       },
-      UserID: {
+      userId: {
         type: Sequelize.INTEGER
       },
-      CategoryName: {
+      categoryName: {
         type: Sequelize.STRING
       },
       createdAt: {

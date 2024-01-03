@@ -9,28 +9,28 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      TaskID: {
+      taskId: {
         type: Sequelize.INTEGER
       },
-      UserID: {
+      userId: {
         type: Sequelize.INTEGER
       },
-      Title: {
+      title: {
         type: Sequelize.STRING
       },
-      Description: {
+      description: {
         type: Sequelize.TEXT
       },
-      DueDate: {
+      dueDate: {
         type: Sequelize.DATE
       },
-      Priority: {
-        type: Sequelize.DataTypes.ENUM('0', '1', '2'),
-        defaultValue: '0'
+      priority: {
+        type: Sequelize.DataTypes.ENUM('High','Medium','Low'),
+        defaultValue: 'Low'
       },
-      Status: {
-        type: Sequelize.DataTypes.ENUM('0', '1'),
-        defaultValue: '0'
+      status: {
+        type: Sequelize.DataTypes.ENUM('Pending','In Progress','Closed'),
+        defaultValue: 'Pending'
       },
       createdAt: {
         allowNull: false,

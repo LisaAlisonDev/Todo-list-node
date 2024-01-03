@@ -10,17 +10,16 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+      Task.belongsToMany(models.Category, { through : models.TaskCategory, foreignKey: 'taskId'})
+      Task.belongsTo(models.User, {foreignKey : 'userId'})
     }
   }
   Task.init({
-    TaskID: DataTypes.INTEGER,
-    UserID: DataTypes.INTEGER,
-    Title: DataTypes.STRING,
-    Description: DataTypes.TEXT,
-    DueDate: DataTypes.DATE,
-    Priority: DataTypes.ENUM('0','1','2'),
-    Status: DataTypes.ENUM('0','1')
+    title: DataTypes.STRING,
+    description: DataTypes.TEXT,
+    dueDate: DataTypes.DATE,
+    priority: DataTypes.ENUM('High','Medium','Low'),
+    status: DataTypes.ENUM('Pending','In Progress', 'Closed')
   }, {
     sequelize,
     modelName: 'Task',

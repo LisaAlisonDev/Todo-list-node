@@ -9,13 +9,13 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      TaskCategoryID: {
+      taskCategoryId: {
         type: Sequelize.INTEGER
       },
-      TaskID: {
+      taskId: {
         type: Sequelize.INTEGER
       },
-      CategoryID: {
+      categoryId: {
         type: Sequelize.INTEGER
       },
       createdAt: {

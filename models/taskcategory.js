@@ -2,6 +2,8 @@
 const {
   Model
 } = require('sequelize');
+const category = require('./category');
+const task = require('./task');
 module.exports = (sequelize, DataTypes) => {
   class TaskCategory extends Model {
     /**
@@ -14,9 +16,6 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   TaskCategory.init({
-    TaskCategoryID: DataTypes.INTEGER,
-    TaskID: DataTypes.INTEGER,
-    CategoryID: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'TaskCategory',

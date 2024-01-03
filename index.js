@@ -1,17 +1,23 @@
 
 const express = require('express')
 const db = require("./models");
+const bodyparser = require('body-parser');
+
 
 const path = require('path')
 const app = express()
 const PORT = 3000
+const routes = require("./routes/index.js");
+
 
 app.set('view engine', 'ejs')
+app.use(bodyparser.json());
+app.use(bodyparser.urlencoded({extended: true}));
 app.use(express.static(path.join(__dirname, '/public')))
+app.use("/", routes);
 
 
-db.sequelize.sync()
-  .then(() => {
+db.sequelize.authenticate().then(() => {
     console.log("Synced db.");
   })
   .catch((err) => {
@@ -19,9 +25,6 @@ db.sequelize.sync()
   });
 
 
-app.get('/', function (req, res) {
-    res.send('Hello World!');
-  })
 
 app.listen(PORT, () => {
   console.log(`app is running on PORT ${PORT}`)

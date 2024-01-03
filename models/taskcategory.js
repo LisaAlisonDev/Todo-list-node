@@ -12,10 +12,17 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
+     
       // define association here
     }
   }
   TaskCategory.init({
+    taskId: {
+      type : DataTypes.INTEGER,
+    },
+    categoryId: {
+      type : DataTypes.INTEGER,
+    }
   }, {
     sequelize,
     modelName: 'TaskCategory',

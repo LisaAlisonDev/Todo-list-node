@@ -1,12 +1,10 @@
 const request = require("supertest")
 const app = require("../index");
-const { user, task } = require("../utils/data");
-
+const { user, task } = require("../utils/test.data");
 
 let token = '';
 
 require("dotenv").config();
-
 
 describe("POST /api/login", () => {
     test("should login", async () => {
@@ -21,17 +19,15 @@ describe("POST /api/login", () => {
 });
 
 
-let taskId = " "
+let taskId = ""
 describe("POST /api/task", () => {
     test("should create a task", async () => {
-        console.log(token)
         return request(app)
             .post("/api/task")
             .set('Authorization', `Bearer ${token}`)
             .send(task)
             .expect(200)
             .then(({body})=>{
-                console.log(body)
             taskId = body.data.id
             })
     });

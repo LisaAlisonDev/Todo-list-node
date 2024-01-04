@@ -1,5 +1,5 @@
 const { User } = require("../models");
-const { generateAccessToken, generateRefreshToken, comparePassword } = require("../services/auth.service");
+const { generateAccessToken, generateRefreshToken, comparePassword } = require("../utils/utils");
 
 exports.login = async (req, res, next) => {
   try {   

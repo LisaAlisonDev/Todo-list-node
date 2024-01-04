@@ -18,8 +18,8 @@ module.exports = (sequelize, DataTypes) => {
     title: DataTypes.STRING,
     description: DataTypes.TEXT,
     dueDate: DataTypes.DATE,
-    priority: DataTypes.ENUM('High','Medium','Low'),
-    status: DataTypes.ENUM('Pending','In Progress', 'Closed'),
+    priority: DataTypes.ENUM(1,2,3),
+    status: DataTypes.ENUM(0,1,2),
     userId: DataTypes.INTEGER
   }, {
     sequelize,

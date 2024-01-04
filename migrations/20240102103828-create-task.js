@@ -25,12 +25,12 @@ module.exports = {
         type: Sequelize.DATE
       },
       priority: {
-        type: Sequelize.DataTypes.ENUM('High','Medium','Low'),
-        defaultValue: 'Low'
+        type: Sequelize.DataTypes.ENUM('1','2','3'),
+        defaultValue:'1'
       },
       status: {
-        type: Sequelize.DataTypes.ENUM('Pending','In Progress','Closed'),
-        defaultValue: 'Pending'
+        type: Sequelize.DataTypes.ENUM('0','1','2'),
+        defaultValue:'0'
       },
       createdAt: {
         allowNull: false,

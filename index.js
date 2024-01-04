@@ -9,15 +9,19 @@ const PORT = 3000
 const routes = require("./routes/index.js");
 const taskRoutes = require("./routes/task.js");
 const categoryRoutes = require('./routes/category.js')
+const categoryTaskRoutes = require('./routes/category.task.js')
+
+app.use(bodyparser.json());
+app.use(bodyparser.urlencoded({extended: true}));
 
 
 app.set('view engine', 'ejs')
-app.use(bodyparser.json());
-app.use(bodyparser.urlencoded({extended: true}));
+
 app.use(express.static(path.join(__dirname, '/public')))
 app.use("/api", routes);
 app.use("/api", taskRoutes);
 app.use("/api", categoryRoutes);
+app.use("/api", categoryTaskRoutes)
 
 
 

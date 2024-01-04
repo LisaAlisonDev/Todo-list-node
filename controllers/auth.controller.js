@@ -2,22 +2,24 @@ const { User } = require("../models");
 const { generateAccessToken, generateRefreshToken, comparePassword } = require("../services/auth.service");
 
 exports.login = async (req, res, next) => {
-  const { email, password } = req.body
-  try {
-    const user = await User.findOne({ where: email });
+  try {   
+    const { email, password } = req.body
+    const user = await User.findOne({ where: { email }});
+    const isPassword = await comparePassword(password, user.password)
 
-    if (!user || !comparePassword(password, user.password)) {
-      res.status(401).json({
-        message: "Login not successful",
-        error: "User not found",
-      })
-    } else {
+    if (user && isPassword){
       accessToken = await generateAccessToken(user)
       refreshToken = await generateRefreshToken(user)
+          
       res.status(200).json({
         message: "Login successful",
         accessToken,
         refreshToken
+      })
+    } else {
+      res.status(401).json({
+        message: "Login not successful",
+        error: "",
       })
     }
   } catch (error) {

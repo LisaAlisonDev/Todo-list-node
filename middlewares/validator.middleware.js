@@ -1,0 +1,13 @@
+const { validationResult } = require('express-validator');
+
+
+exports.verifyData = (req, res, next) => {
+    const errors = validationResult(req);
+    console.log(req, errors)
+
+    if (!errors.isEmpty()) {
+        return res.status(400).json({ errors: errors.array() });
+    }
+    next()
+}
+
